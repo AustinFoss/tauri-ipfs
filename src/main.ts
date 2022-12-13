@@ -15,7 +15,7 @@ async function greet() {
 
 async function initIpfs() {
   
-  let node: undefined | IPFS
+  let node: IPFS
   try {
     node = await create()    
     console.log(node);
