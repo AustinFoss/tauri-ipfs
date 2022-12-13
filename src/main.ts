@@ -1,5 +1,5 @@
 import { invoke } from "@tauri-apps/api/tauri";
-import { create } from "ipfs"
+import { IPFS, create } from "ipfs"
 
 let greetInputEl: HTMLInputElement | null;
 let greetMsgEl: HTMLElement | null;
@@ -14,9 +14,16 @@ async function greet() {
 }
 
 async function initIpfs() {
-  let node = await create()
-  const id = await node.id()
-  console.log(id)  
+  
+  let node: undefined | IPFS
+  try {
+    node = await create()    
+    console.log(node);
+  } catch(err) {
+    console.log(err);    
+    return
+  }
+  
 }
 
 window.addEventListener("DOMContentLoaded", () => {
